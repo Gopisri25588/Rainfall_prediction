@@ -212,4 +212,6 @@ print(round(random_forest_model.score(X_train,y_train),3)*100)
 print("-----------Testing Accuracy------------")
 print(round(random_forest_model.score(X_test,y_test),3)*100)
 predicted = random_forest_model.predict([[2016,11]])
+predicted = random_forest_model.predict([[2021,8]])
+predicted = random_forest_model.predict([[2031,1]])
 predicted
