@@ -2,7 +2,4 @@ numpy
 pandas
 matplotlib
 sklearn
-sklearn.model_selection
-sklearn.linear_model
-sklearn.ensemble
 streamlit
