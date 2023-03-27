@@ -37,27 +37,56 @@ data.describe()
 # plt.grid(axis="x", linestyle="-.")
 # Rainfall_subdivision = plt.show()
 # st.pyplot(Rainfall_subdivision)
-plt.figure(figsize=(15, 8))
-data.groupby("YEAR").sum()['ANNUAL'].plot(kind="line", color="r", marker=".")
-plt.xlabel("YEARS", size=12)
-plt.ylabel("RAINFALL IN MM", size=12)
-plt.grid(axis="both", linestyle="-.")
-plt.title("Rainfall over Years")
-Year_rainfall = plt.show()
-st.pyplot(Year_rainfall)
-data[['YEAR', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
-      'OCT', 'NOV', 'DEC']].groupby("YEAR").sum().plot(kind="line", figsize=(18, 8))
-plt.xlabel("Year", size=13)
-plt.ylabel("Rainfall in MM", size=13)
-plt.title("Year v/s Rainfall in each month", size=20)
-Year_rainfall_month = plt.show()
-st.pyplot(Year_rainfall_month)
-data[['YEAR', 'Jan-Feb', 'Mar-May',
-      'Jun-Sep', 'Oct-Dec']].groupby("YEAR").sum().plot(figsize=(10, 7))
-plt.xlabel("Year", size=13)
-plt.ylabel("Rainfall in MM", size=13)
-year_rainfall_quart = plt.show()
-st.pyplot(year_rainfall_quart)
+
+fig = px.line(data, x='YEAR', y='ANNUAL', title='Rainfall over Years', color_discrete_sequence=['red'],
+              markers=dict(size=10, color='red'))
+fig.update_xaxes(title='Years')
+fig.update_yaxes(title='Annual Rainfall in mm')
+fig.update_layout(xaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'),
+                  yaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'))
+st.plotly_chart(fig)
+
+fig = px.line(data, x='YEAR', y=['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+              title='Year vs Rainfall in Each Month',
+              color_discrete_sequence=['red', 'blue', 'green', 'yellow', 'orange', 'violet', 'black', 'pink',
+                                       'forestgreen', 'brown', 'cyan', 'grey'], markers=dict(size=10, color='red'))
+fig.update_xaxes(title='Years')
+fig.update_yaxes(title='Rainfall in mm')
+fig.update_layout(xaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'),
+                  yaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'))
+st.plotly_chart(fig)
+
+fig = px.line(data, x='YEAR', y=['Jan-Feb', 'Mar-May', 'Jun-Sep', 'Oct-Dec'], title='Year vs Rainfall in Combine Month',
+              color_discrete_sequence=['red', 'blue', 'green', 'yellow'], markers=dict(size=10, color='red'))
+fig.update_xaxes(title='Years')
+fig.update_yaxes(title='Rainfall in mm')
+fig.update_layout(xaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'),
+                  yaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'))
+st.plotly_chart(fig)
+# plt.figure(figsize=(15, 8))
+# data.groupby("YEAR").sum()['ANNUAL'].plot(kind="line", color="r", marker=".")
+# plt.xlabel("YEARS", size=12)
+# plt.ylabel("RAINFALL IN MM", size=12)
+# plt.grid(axis="both", linestyle="-.")
+# plt.title("Rainfall over Years")
+# Year_rainfall = plt.show()
+# st.pyplot(Year_rainfall)
+
+# data[['YEAR', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
+#       'OCT', 'NOV', 'DEC']].groupby("YEAR").sum().plot(kind="line", figsize=(18, 8))
+# plt.xlabel("Year", size=13)
+# plt.ylabel("Rainfall in MM", size=13)
+# plt.title("Year v/s Rainfall in each month", size=20)
+# Year_rainfall_month = plt.show()
+# st.pyplot(Year_rainfall_month)
+
+# data[['YEAR', 'Jan-Feb', 'Mar-May',
+#       'Jun-Sep', 'Oct-Dec']].groupby("YEAR").sum().plot(figsize=(10, 7))
+# plt.xlabel("Year", size=13)
+# plt.ylabel("Rainfall in MM", size=13)
+# year_rainfall_quart = plt.show()
+# st.pyplot(year_rainfall_quart)
+
 data[['SUBDIVISION', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
       'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].groupby("SUBDIVISION").sum().plot(kind="barh", stacked=True, figsize=(13, 8))
 plt.title("Sub-Division v/s Rainfall in each month")
@@ -85,14 +114,15 @@ plt.ylabel("Rainfall in MM", size=14)
 plt.grid(axis="both", linestyle="-.")
 C = plt.show()
 st.pyplot(C)
-UK.groupby("YEAR").sum()['ANNUAL'].plot(ylim=(50, 1500), color='r', marker='o', linestyle='-', linewidth=2,
-                                        figsize=(12, 8));
-plt.xlabel('Year', size=14)
-plt.ylabel('Rainfall in MM', size=14)
-plt.title('Champawat Annual Rainfall from Year 1901 to 2021', size=20)
-plt.grid()
-D = plt.show()
-st.pyplot(D)
+
+# UK.groupby("YEAR").sum()['ANNUAL'].plot(ylim=(50, 1500), color='r', marker='o', linestyle='-', linewidth=2,
+#                                         figsize=(12, 8));
+# plt.xlabel('Year', size=14)
+# plt.ylabel('Rainfall in MM', size=14)
+# plt.title('Champawat Annual Rainfall from Year 1901 to 2021', size=20)
+# plt.grid()
+# D = plt.show()
+# st.pyplot(D)
 
 plt.figure(figsize=(15, 6))
 sns.heatmap(data[['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC', 'ANNUAL']].corr(),
