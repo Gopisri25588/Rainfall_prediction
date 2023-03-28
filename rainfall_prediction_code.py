@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestRegressor
 import streamlit as st
 import plotly.express as px
 
-data = pd.read_csv("D:\\deepai_assignment\\rainfall_predict\\rainfall_data_1901_2015_champawat_uk.csv")
+data = pd.read_csv("D:\\deepai_assignment\\rainfall_predict_DSAI\\rainfall_data_1901_2015_champawat_uk.csv")
 st.dataframe(data)
 data.head()
 data.info()
@@ -52,23 +52,6 @@ fig.update_yaxes(title='Rainfall in mm')
 fig.update_layout(xaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'),
                   yaxis=dict(showgrid=True, gridwidth=1, gridcolor='lightgray'))
 st.plotly_chart(fig)
-
-data[['SUBDIVISION', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
-      'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].groupby("SUBDIVISION").sum().plot(kind="barh", stacked=True, figsize=(13, 8))
-plt.title("Sub-Division v/s Rainfall in each month")
-plt.xlabel("Rainfall in MM", size=12)
-plt.ylabel("Sub-Division", size=12)
-plt.grid(axis="x", linestyle="-.")
-sub_div_rainfall = plt.show()
-st.pyplot(sub_div_rainfall)
-
-data[['SUBDIVISION', 'Jan-Feb', 'Mar-May',
-      'Jun-Sep', 'Oct-Dec']].groupby("SUBDIVISION").sum().plot(kind="barh", stacked=True, figsize=(16, 8))
-plt.xlabel("Rainfall in MM", size=12)
-plt.ylabel("Sub-Division", size=12)
-plt.grid(axis="x", linestyle="-.")
-sub_div_rainfall_two_month = plt.show()
-st.pyplot(sub_div_rainfall_two_month)
 
 UK = data.loc[(data['SUBDIVISION'] == 'Champawat')]
 UK.head(4)
@@ -282,3 +265,20 @@ st.write(predicted_rf1, predicted_rf2)
 # plt.ylabel("Rainfall in MM", size=13)
 # year_rainfall_quart = plt.show()
 # st.pyplot(year_rainfall_quart)
+
+# data[['SUBDIVISION', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL',
+#       'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].groupby("SUBDIVISION").sum().plot(kind="barh", stacked=True, figsize=(13, 8))
+# plt.title("Sub-Division v/s Rainfall in each month")
+# plt.xlabel("Rainfall in MM", size=12)
+# plt.ylabel("Sub-Division", size=12)
+# plt.grid(axis="x", linestyle="-.")
+# sub_div_rainfall = plt.show()
+# st.pyplot(sub_div_rainfall)
+#
+# data[['SUBDIVISION', 'Jan-Feb', 'Mar-May',
+#       'Jun-Sep', 'Oct-Dec']].groupby("SUBDIVISION").sum().plot(kind="barh", stacked=True, figsize=(16, 8))
+# plt.xlabel("Rainfall in MM", size=12)
+# plt.ylabel("Sub-Division", size=12)
+# plt.grid(axis="x", linestyle="-.")
+# sub_div_rainfall_two_month = plt.show()
+# st.pyplot(sub_div_rainfall_two_month)
